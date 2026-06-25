@@ -52,7 +52,7 @@ const projects: Project[] = [
       es: "Una plataforma premium de revisión de código impulsada por IA que analiza la calidad del código, las vulnerabilidades de seguridad y los cuellos de botella de rendimiento utilizando revisores de IA multi-persona. Diseñó canalizaciones de revisión asíncronas escalables utilizando Redis y BullMQ para un procesamiento eficiente de tareas en segundo plano.",
       en: "An AI-powered peer code review platform capable of analyzing code quality, security vulnerabilities, scalability issues, and performance bottlenecks using multi-persona AI reviewers. Designed scalable asynchronous review pipelines using Redis and BullMQ for concurrent background job processing and real-time feedback.",
     },
-    github: "https://github.com/varunakumari2102/CodeReview.ai",
+    github: "https://github.com/varunaKumari/CodeReview.ai",
     media: [
       "/projects/revio/landing.png",
       "/projects/revio/dashboard.png",
@@ -83,7 +83,7 @@ const projects: Project[] = [
       es: "Plataforma integral de análisis de gastos de IA para rastrear el uso de APIs y los costos de suscripción, ayudando a identificar oportunidades de optimización. Integra paneles de previsión financiera e insights generados por IA para recomendaciones de ahorro de costos automatizadas.",
       en: "A full-stack AI spend intelligence platform to analyze AI subscriptions, API usage, and operational costs, helping users identify overspending and optimization opportunities. Integrated AI-generated financial insights, forecasting dashboards, and benchmarking systems to deliver personalized cost-saving recommendations.",
     },
-    github: "https://github.com/varunakumari2102/PromptBudget",
+    github: "https://github.com/varunaKumari/PromptBudget",
     media: [
       "/projects/aptia/landing.png",
       "/projects/aptia/panel.png",
@@ -114,7 +114,7 @@ const projects: Project[] = [
       es: "Una pizarra digital interactiva que permite a múltiples usuarios dibujar, escribir y colaborar en tiempo real. Construida con Canvas API para un renderizado de alto rendimiento y WebSockets (Socket.io) para una sincronización de estado de latencia ultra baja.",
       en: "A collaborative digital whiteboard allowing multiple users to draw, write, and collaborate in real time. Built using the HTML5 Canvas API for high-performance rendering and WebSockets (Socket.io) for ultra-low latency state synchronization.",
     },
-    github: "https://github.com/varunakumari2102/WhiteBoard-web",
+    github: "https://github.com/varunaKumari/WhiteBoard-web",
     media: [
       "/projects/gestor-gastos/dashboard.png",
       "/projects/gestor-gastos/wallets.png",
@@ -144,7 +144,7 @@ const projects: Project[] = [
       es: "Una red social moderna con generación de feeds inteligentes y moderación automática de contenido impulsada por modelos de lenguaje de OpenAI. Incluye chat en vivo con asistentes virtuales y un panel de análisis de interacciones.",
       en: "A modern social network with intelligent feed generation and automated content moderation powered by OpenAI language models. Features real-time chat with virtual assistants and an interaction analytics dashboard.",
     },
-    github: "https://github.com/varunakumari2102/ai-social-platform",
+    github: "https://github.com/varunaKumari/ai-social-platform",
     media: [
       "/projects/dianas/packs.png",
       "/projects/dianas/catalogo.png",
@@ -155,128 +155,20 @@ const projects: Project[] = [
   },
 ];
 
-const experiences: Array<{
-  role: Localised;
-  company: string;
-  period: Localised;
-  location: Localised;
-  summary: Localised;
-  bullets: Localised[];
-  stack: string[];
-}> = [
-  {
-    role: {
-      es: "Scholar & Mentee de Ingeniería de Software",
-      en: "Software Engineering Scholar & Mentee",
-    },
-    company: "Amazon",
-    period: { es: "2025 — Presente", en: "2025 — Present" },
-    location: { es: "India (Remoto)", en: "India (Remote)" },
-    summary: {
-      es: "Seleccionada entre las 500 mejores estudiantes a nivel nacional por excelencia académica y técnica. Participo en mentorías con ingenieros de Amazon enfocadas en desarrollo de software y sistemas cloud.",
-      en: "Selected among the top 500 students nationwide for academic excellence and technical skills. Participating in mentorship sessions with Amazon engineers focused on software engineering and cloud systems.",
-    },
-    bullets: [
-      {
-        es: "Mentoría directa con ingenieros senior de Amazon en diseño de sistemas y mejores prácticas.",
-        en: "Direct mentorship from senior Amazon engineers on system design and software engineering best practices.",
-      },
-      {
-        es: "Talleres prácticos sobre servicios web (AWS) y arquitectura de software a escala de producción.",
-        en: "Hands-on workshops on cloud web services (AWS) and software architecture at production scale.",
-      },
-      {
-        es: "Participación activa en revisiones de código colaborativas y simulacros de diseño técnico.",
-        en: "Active participation in collaborative code reviews and mock technical design sessions.",
-      },
-    ],
-    stack: ["AWS", "Python", "Docker", "Git", "System Design"],
-  },
-  {
-    role: {
-      es: "Grado en Inteligencia Artificial y Ciencia de Datos",
-      en: "B.Tech in Artificial Intelligence & Data Science",
-    },
-    company: "IIIT Raichur",
-    period: { es: "2024 — Presente", en: "2024 — Present" },
-    location: { es: "Raichur, India", en: "Raichur, India" },
-    summary: {
-      es: "Estudios de grado enfocados en algoritmos, estructuras de datos, aprendizaje automático, bases de datos y desarrollo de software con un promedio actual (CGPA) de 7.94 / 10.0.",
-      en: "Undergraduate studies focused on algorithms, data structures, machine learning, databases, and software engineering. Current CGPA: 7.94 / 10.0.",
-    },
-    bullets: [
-      {
-        es: "Sólida formación en Estructuras de Datos y Algoritmos (DSA), Programación Orientada a Objetos (OOP) y DBMS.",
-        en: "Solid foundation in Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), and DBMS.",
-      },
-      {
-        es: "Proyectos académicos y laboratorios prácticos en Python, Java y C++ para resolver problemas complejos.",
-        en: "Academic projects and practical labs in Python, Java, and C++ to solve complex problems.",
-      },
-      {
-        es: "Especialización en modelos predictivos, análisis de datos y procesamiento del lenguaje natural.",
-        en: "Specialisation in predictive modeling, data analysis, and natural language processing.",
-      },
-    ],
-    stack: ["Java", "Python", "C++", "SQL", "DSA", "DBMS"],
-  },
-  {
-    role: {
-      es: "Trainee en Inteligencia Artificial y Aprendizaje Automático",
-      en: "AI/ML Trainee — Pragati Cohort 6",
-    },
-    company: "Infosys",
-    period: { es: "2025", en: "2025" },
-    location: { es: "India (Remoto)", en: "India (Remote)" },
-    summary: {
-      es: "Completé un programa intensivo de 12 semanas de formación técnica en Inteligencia Artificial y Aprendizaje Automático con más de 100 horas de clases prácticas.",
-      en: "Completed an intensive 12-week technical training program in Artificial Intelligence and Machine Learning with over 100 hours of hands-on coursework.",
-    },
-    bullets: [
-      {
-        es: "Desarrollo de modelos de ML utilizando TensorFlow, scikit-learn y pandas en Python.",
-        en: "Development of ML models using TensorFlow, scikit-learn, and pandas in Python.",
-      },
-      {
-        es: "Formación práctica en ingeniería de prompts y consumo de APIs de modelos de lenguaje grandes (LLMs).",
-        en: "Practical training in prompt engineering and consuming large language model (LLM) APIs.",
-      },
-      {
-        es: "Finalización de proyectos prácticos de clasificación de imágenes y análisis predictivo.",
-        en: "Completion of hands-on projects in image classification and predictive analysis.",
-      },
-    ],
-    stack: ["Python", "TensorFlow", "Pandas", "Prompt Engineering"],
-  },
-  {
-    role: {
-      es: "Miembro Activo & Organizadora Técnica",
-      en: "Active Member & Technical Organizer",
-    },
-    company: "IIIT Raichur Student Societies",
-    period: { es: "2025 — Presente", en: "2025 — Present" },
-    location: { es: "Raichur, India", en: "Raichur, India" },
-    summary: {
-      es: "Miembro activa en CodeSoc (Sociedad de Programación de IIIT Raichur) y miembro del Comité Técnico de SIC, liderando la organización de eventos tecnológicos y talleres de codificación.",
-      en: "Active member of CodeSoc (IIIT Raichur's Coding Society) and member of the SIC Technical Committee, leading the organization of technical events and coding workshops.",
-    },
-    bullets: [
-      {
-        es: "Colaboración en la organización de hackathons universitarios y competiciones de programación competitiva.",
-        en: "Collaboration in organizing university hackathons and competitive programming contests.",
-      },
-      {
-        es: "Participación activa en entrenamientos semanales de algoritmos y estructuras de datos complejos.",
-        en: "Active participation in weekly training sessions on complex algorithms and data structures.",
-      },
-      {
-        es: "Impartición de tutorías introductorias a estudiantes de primer año sobre desarrollo de software básico.",
-        en: "Delivery of introductory tutorials to first-year students on basic software development.",
-      },
-    ],
-    stack: ["Leadership", "Competitive Programming", "Algorithms", "Public Speaking"],
-  },
-];
+const seekingMessage = {
+  es: "🚀 Actualmente en búsqueda de oportunidades de prácticas — abierta a roles en Desarrollo de Software, IA/ML y campos relacionados. ¡No dudes en contactarme!",
+  en: "🚀 Currently seeking internship opportunities — open to roles in Software Development, AI/ML, and related fields. Feel free to reach out!",
+};
+
+const achievementsTitle = {
+  es: "Logros y Actividades",
+  en: "Achievements & Journey",
+};
+
+const achievementsSubtitle = {
+  es: "Mi trayectoria competitiva, mentorías y roles de liderazgo.",
+  en: "My competitive coding achievements, mentorships, and leadership roles.",
+};
 
 function pick<T>(loc: { es: T; en: T }, lang: Lang): T {
   return loc[lang];
@@ -337,7 +229,7 @@ export default function Home() {
             <SeasonPicker />
             <span className="hidden md:inline-flex">
             <a
-              href="https://github.com/varunakumari2102/3d-portfolio"
+              href="https://github.com/varunaKumari/3D-PORTFOLIO"
               target="_blank"
               rel="noopener noreferrer"
               data-cursor="hover"
@@ -428,7 +320,7 @@ export default function Home() {
                     so desktop keeps everything on a single line. */}
                 <div className="basis-full h-0 md:hidden" aria-hidden />
                 <a
-                  href="https://linkedin.com/in/varunakumari2102"
+                  href="https://www.linkedin.com/in/varunakumari/"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="hover"
@@ -441,7 +333,7 @@ export default function Home() {
                   </svg>
                 </a>
                 <a
-                  href="https://github.com/varunakumari2102"
+                  href="https://github.com/varunaKumari"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="hover"
@@ -551,61 +443,201 @@ export default function Home() {
               </Reveal>
             </div>
 
-            <div className="relative z-10 max-w-3xl mx-auto space-y-6">
-              {experiences.map((exp, idx) => (
-                <Reveal
-                  key={`${exp.company}-${idx}`}
-                  delay={idx * 120}
-                  as="article"
-                  className="relative rounded-2xl bg-ink-1/75 backdrop-blur-md border border-ink-3 p-6 sm:p-8 md:p-10 pointer-events-auto shadow-[0_8px_40px_-20px_rgba(0,0,0,0.6)]"
-                >
-                  <header className="flex flex-wrap items-start justify-between gap-3 mb-5">
-                    <div>
-                      <h3 className="text-2xl sm:text-3xl font-bold text-ice-50 tracking-tight">
-                        {pick(exp.role, lang)}
-                      </h3>
-                      <p className="text-ice-400 font-medium mt-1">
-                        {exp.company}
-                        <span className="text-ice-500/80 font-normal">
-                          {" · "}
-                          {pick(exp.location, lang)}
-                        </span>
-                      </p>
-                    </div>
-                    <span className="font-mono text-xs text-ice-100 px-3 py-1 rounded-full border border-ice-700/70 bg-ink-2/60 whitespace-nowrap">
-                      {pick(exp.period, lang)}
+            <div className="relative z-10 max-w-2xl mx-auto pointer-events-auto">
+              <Reveal
+                as="div"
+                className="relative rounded-2xl bg-ink-1/75 backdrop-blur-md border border-ice-500/20 p-8 sm:p-10 text-center shadow-[0_8px_40px_-20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:border-ice-500/40"
+              >
+                <p className="text-lg sm:text-xl text-ice-100 font-medium leading-relaxed">
+                  {pick(seekingMessage, lang)}
+                </p>
+              </Reveal>
+            </div>
+          </section>
+
+          {/* Achievements, Mentorship & Responsibilities */}
+          <section
+            data-kb-section="achievements"
+            className="relative p-6 sm:p-10 md:p-14 pb-24"
+          >
+            <div className="sticky top-24 sm:top-28 text-center mb-12 sm:mb-16 z-0">
+              <Reveal>
+                <h2 className="text-5xl sm:text-7xl md:text-8xl font-bold tracking-[-0.03em] text-ice-50 leading-[0.95]">
+                  {pick(achievementsTitle, lang)}
+                </h2>
+              </Reveal>
+              <Reveal delay={120}>
+                <p className="mt-3 text-sm sm:text-base text-ice-300">
+                  {pick(achievementsSubtitle, lang)}
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="relative z-10 max-w-3xl mx-auto space-y-8">
+              {/* Achievements Card */}
+              <Reveal
+                as="article"
+                className="relative rounded-2xl bg-ink-1/75 backdrop-blur-md border border-ink-3 p-6 sm:p-8 md:p-10 pointer-events-auto shadow-[0_8px_40px_-20px_rgba(0,0,0,0.6)]"
+              >
+                <header className="mb-5">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-ice-50 tracking-tight">
+                    {lang === "en" ? "Achievements" : "Logros"}
+                  </h3>
+                </header>
+                <ul className="space-y-3.5 mb-6">
+                  <li className="flex gap-3 text-ice-100 leading-relaxed">
+                    <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
+                    <span>
+                      {lang === "en"
+                        ? "Solved 350+ DSA problems on LeetCode with a 1450+ contest rating"
+                        : "Resuelto más de 350 problemas de DSA en LeetCode con una calificación de concurso de 1450+"}
                     </span>
-                  </header>
+                  </li>
+                  <li className="flex gap-3 text-ice-100 leading-relaxed">
+                    <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
+                    <span>
+                      {lang === "en"
+                        ? "Achieved Expert on Codeforces (1400+ rating) with 200+ algorithmic problems solved"
+                        : "Alcanzado el rango de Experto en Codeforces (calificación 1400+) con más de 200 problemas algorítmicos resueltos"}
+                    </span>
+                  </li>
+                  <li className="flex gap-3 text-ice-100 leading-relaxed">
+                    <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
+                    <span>
+                      {lang === "en"
+                        ? "Earned 3★ on CodeChef with a 1600+ rating in competitive programming contests"
+                        : "Logrado 3★ en CodeChef con una calificación de 1600+ en concursos de programación competitiva"}
+                    </span>
+                  </li>
+                </ul>
+                <div className="flex flex-wrap gap-1.5">
+                  {["LeetCode", "Codeforces", "CodeChef", "Algorithms", "DSA"].map((s) => (
+                    <span key={s} data-cursor="hover" className="frost-chip">{s}</span>
+                  ))}
+                </div>
+              </Reveal>
 
-                  <p className="text-ice-200 leading-relaxed mb-5">
-                    {pick(exp.summary, lang)}
-                  </p>
-
-                  <ul className="space-y-2.5 mb-6">
-                    {exp.bullets.map((b, i) => (
-                      <li
-                        key={i}
-                        className="flex gap-3 text-ice-100 leading-relaxed"
-                      >
-                        <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
-                        <span>{pick(b, lang)}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {exp.stack.map((s) => (
-                      <span
-                        key={s}
-                        data-cursor="hover"
-                        className="frost-chip"
-                      >
-                        {s}
-                      </span>
-                    ))}
+              {/* Mentorship & Programs Card */}
+              <Reveal
+                as="article"
+                className="relative rounded-2xl bg-ink-1/75 backdrop-blur-md border border-ink-3 p-6 sm:p-8 md:p-10 pointer-events-auto shadow-[0_8px_40px_-20px_rgba(0,0,0,0.6)]"
+              >
+                <header className="mb-6">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-ice-50 tracking-tight">
+                    {lang === "en" ? "Mentorship & Programs" : "Mentorías y Programas"}
+                  </h3>
+                </header>
+                <div className="mb-6">
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                    <h4 className="text-xl font-semibold text-ice-100">
+                      Amazon FFE Scholar
+                    </h4>
+                    <span className="font-mono text-xs text-ice-100 px-3 py-1 rounded-full border border-ice-700/70 bg-ink-2/60">
+                      2025 — {lang === "en" ? "Present" : "Presente"}
+                    </span>
                   </div>
-                </Reveal>
-              ))}
+                  <ul className="space-y-3">
+                    <li className="flex gap-3 text-ice-200 leading-relaxed">
+                      <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
+                      <span>
+                        {lang === "en"
+                          ? "Selected among the top 500 students nationwide for academic excellence, technical skills, and leadership potential"
+                          : "Seleccionada entre las 500 mejores estudiantes a nivel nacional por excelencia académica, habilidades técnicas y potencial de liderazgo"}
+                      </span>
+                    </li>
+                    <li className="flex gap-3 text-ice-200 leading-relaxed">
+                      <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
+                      <span>
+                        {lang === "en"
+                          ? "Participating in mentorship sessions with Amazon engineers focused on software engineering, cloud systems, and industry-level development practices"
+                          : "Participación en sesiones de mentoría con ingenieros de Amazon enfocadas en ingeniería de software, sistemas en la nube y prácticas de desarrollo a nivel industrial"}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                    <h4 className="text-xl font-semibold text-ice-100">
+                      Infosys Springboard — Pragati Cohort 6
+                    </h4>
+                    <span className="font-mono text-xs text-ice-100 px-3 py-1 rounded-full border border-ice-700/70 bg-ink-2/60">
+                      2025
+                    </span>
+                  </div>
+                  <ul className="space-y-3">
+                    <li className="flex gap-3 text-ice-200 leading-relaxed">
+                      <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
+                      <span>
+                        {lang === "en"
+                          ? "Completed a 12-week AI/ML skilling program with 100+ hours of hands-on training in machine learning and software development"
+                          : "Completado un programa de desarrollo de habilidades en IA/ML de 12 semanas con más de 100 horas de capacitación práctica en aprendizaje automático y desarrollo de software"}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-6">
+                  {["Amazon", "Infosys", "AWS", "AI/ML", "Software Engineering"].map((s) => (
+                    <span key={s} data-cursor="hover" className="frost-chip">{s}</span>
+                  ))}
+                </div>
+              </Reveal>
+
+              {/* Positions of Responsibility Card */}
+              <Reveal
+                as="article"
+                className="relative rounded-2xl bg-ink-1/75 backdrop-blur-md border border-ink-3 p-6 sm:p-8 md:p-10 pointer-events-auto shadow-[0_8px_40px_-20px_rgba(0,0,0,0.6)]"
+              >
+                <header className="mb-6">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-ice-50 tracking-tight">
+                    {lang === "en" ? "Positions of Responsibility" : "Cargos de Responsabilidad"}
+                  </h3>
+                </header>
+                <div className="mb-6">
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                    <h4 className="text-xl font-semibold text-ice-100">
+                      Member, CodeSoc — IIIT Raichur
+                    </h4>
+                    <span className="font-mono text-xs text-ice-100 px-3 py-1 rounded-full border border-ice-700/70 bg-ink-2/60">
+                      2025 — {lang === "en" ? "Present" : "Presente"}
+                    </span>
+                  </div>
+                  <ul className="space-y-3">
+                    <li className="flex gap-3 text-ice-200 leading-relaxed">
+                      <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
+                      <span>
+                        {lang === "en"
+                          ? "Active participant in DSA, competitive programming contests, and collaborative problem-solving sessions"
+                          : "Participante activa en DSA, concursos de programación competitiva y sesiones colaborativas de resolución de problemas"}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-start justify-between gap-3 mb-3">
+                    <h4 className="text-xl font-semibold text-ice-100">
+                      Member, SIC Technical Committee
+                    </h4>
+                    <span className="font-mono text-xs text-ice-100 px-3 py-1 rounded-full border border-ice-700/70 bg-ink-2/60">
+                      2025 — {lang === "en" ? "Present" : "Presente"}
+                    </span>
+                  </div>
+                  <ul className="space-y-3">
+                    <li className="flex gap-3 text-ice-200 leading-relaxed">
+                      <span className="mt-[0.65em] flex-none w-1.5 h-1.5 rounded-full bg-ice-400" />
+                      <span>
+                        {lang === "en"
+                          ? "Assisted in organizing technical events, coding workshops, and student-focused development activities"
+                          : "Colaboración en la organización de eventos tecnológicos, talleres de programación y actividades de desarrollo centradas en los estudiantes"}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-6">
+                  {["Leadership", "CodeSoc", "SIC", "Event Organization"].map((s) => (
+                    <span key={s} data-cursor="hover" className="frost-chip">{s}</span>
+                  ))}
+                </div>
+              </Reveal>
             </div>
           </section>
 
@@ -753,7 +785,7 @@ export default function Home() {
                     {t("contact.openMail")}
                   </a>
                   <a
-                    href="https://github.com/varunakumari2102"
+                    href="https://github.com/varunaKumari"
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor="hover"
@@ -762,7 +794,7 @@ export default function Home() {
                     {t("contact.github")}
                   </a>
                   <a
-                    href="https://linkedin.com/in/varunakumari2102"
+                    href="https://www.linkedin.com/in/varunakumari/"
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor="hover"

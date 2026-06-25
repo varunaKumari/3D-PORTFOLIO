@@ -31,6 +31,7 @@ export const DICT = {
     home: { es: "Inicio", en: "Home" },
     stack: { es: "Stack", en: "Stack" },
     experience: { es: "Experiencia", en: "Experience" },
+    achievements: { es: "Logros", en: "Achievements" },
     project: { es: "Proyecto", en: "Project" },
     contact: { es: "Contacto", en: "Contact" },
   },
