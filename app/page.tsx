@@ -7,7 +7,6 @@ import Reveal from "@/components/Reveal";
 import SectionNav from "@/components/SectionNav";
 import CopyEmail from "@/components/CopyEmail";
 import SeasonPicker from "@/components/SeasonPicker";
-import LanguagePicker from "@/components/LanguagePicker";
 import ProjectModal, {
   type ProjectDetail,
 } from "@/components/ProjectModal";
@@ -17,11 +16,6 @@ import { SKILLS_FLAT } from "@/lib/skills";
 import type { Lang } from "@/lib/i18n";
 
 const EMAIL = "varunakumari2102@gmail.com";
-
-// Localised content lives in `{ es, en }` objects inside these arrays so the
-// page can be a straightforward array.map() at render time. Tech names stay
-// as plain strings (they're brand names, not localised).
-type Localised = { es: string; en: string };
 
 type Project = ProjectDetail & {
   align: "left" | "right";
@@ -241,7 +235,6 @@ export default function Home() {
               <span>GitHub</span>
             </a>
             </span>
-            <LanguagePicker />
           </div>
         </header>
 

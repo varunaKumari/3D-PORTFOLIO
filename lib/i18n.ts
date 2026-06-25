@@ -5,8 +5,8 @@
 // project tiny and makes the strings easy to audit.
 export type Lang = "es" | "en";
 
-export const LANGUAGES: Lang[] = ["es", "en"];
-export const DEFAULT_LANG: Lang = "es";
+export const LANGUAGES: Lang[] = ["en"];
+export const DEFAULT_LANG: Lang = "en";
 
 type Leaf = Record<Lang, string>;
 type Node = Leaf | { [key: string]: Node };

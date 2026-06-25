@@ -25,20 +25,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Varuna Kumari — AI & Data Science Student & Full Stack Developer",
   description:
-    "Portfolio inmersivo de Varuna Kumari — Estudiante de IA & Ciencia de Datos y Desarrolladora Full Stack. Experiencias web 3D con Next.js y React Three Fiber.",
+    "Immersive portfolio of Varuna Kumari - AI & Data Science Student and Full Stack Developer. 3D web experiences with Next.js and React Three Fiber.",
   authors: [{ name: "Varuna Kumari" }],
   openGraph: {
     title: "Varuna Kumari — AI & Data Science Student & Full Stack Developer",
     description:
-      "Portfolio inmersivo con escena 3D interactiva. Next.js, React Three Fiber, GLSL.",
+      "Immersive portfolio with an interactive 3D scene. Next.js, React Three Fiber, GLSL.",
     type: "website",
-    locale: "es_ES",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Varuna Kumari — AI & Data Science Student & Full Stack Developer",
     description:
-      "Portfolio inmersivo con escena 3D interactiva. Next.js, React Three Fiber, GLSL.",
+      "Immersive portfolio with an interactive 3D scene. Next.js, React Three Fiber, GLSL.",
   },
 };
 
@@ -54,13 +54,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="es"
+      lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
-        {/* Run synchronously before hydration to apply the user's stored
-            season + language — avoids a flash of the default values. */}
+        {/* Run synchronously before hydration to apply the stored season and
+            English language before React mounts. */}
         <script dangerouslySetInnerHTML={{ __html: SEASON_BOOT_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: LANG_BOOT_SCRIPT }} />
       </head>

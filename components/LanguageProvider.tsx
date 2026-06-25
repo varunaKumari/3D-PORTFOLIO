@@ -10,7 +10,6 @@ import {
 } from "react";
 import {
   DEFAULT_LANG,
-  LANGUAGES,
   translate,
   type Lang,
 } from "@/lib/i18n";
@@ -25,9 +24,9 @@ const Ctx = createContext<LanguageCtx | null>(null);
 
 const STORAGE_KEY = "portfolio-lang";
 
-// Inlined in <head> before hydration so the document lang attribute matches
-// the user's stored preference (avoids FOUC and wrong screen-reader lang).
-export const LANG_BOOT_SCRIPT = `(function(){try{var l=localStorage.getItem(${JSON.stringify(STORAGE_KEY)});var ok=${JSON.stringify(LANGUAGES)};if(l&&ok.indexOf(l)>-1){document.documentElement.lang=l;}}catch(e){}})();`;
+// Inlined in <head> before hydration so the document language is English-only,
+// even if an older bilingual version saved a different preference.
+export const LANG_BOOT_SCRIPT = `(function(){try{localStorage.removeItem(${JSON.stringify(STORAGE_KEY)});}catch(e){}document.documentElement.lang=${JSON.stringify(DEFAULT_LANG)};})();`;
 
 export default function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(DEFAULT_LANG);
@@ -36,22 +35,20 @@ export default function LanguageProvider({ children }: { children: ReactNode }) 
     // Sync React state with whatever the boot script already applied to the
     // <html> element. No-op if the boot script didn't find a stored pref.
     const domLang = document.documentElement.lang;
-    if (
-      (domLang === "es" || domLang === "en") &&
-      domLang !== lang
-    ) {
+    if (domLang === DEFAULT_LANG && domLang !== lang) {
       setLangState(domLang);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setLang = useCallback((next: Lang) => {
-    setLangState(next);
-    document.documentElement.lang = next;
+    void next;
+    setLangState(DEFAULT_LANG);
+    document.documentElement.lang = DEFAULT_LANG;
     try {
-      localStorage.setItem(STORAGE_KEY, next);
+      localStorage.removeItem(STORAGE_KEY);
     } catch {
-      // Ignore — state still updates in-memory.
+      // Ignore - state still updates in-memory.
     }
   }, []);
 
