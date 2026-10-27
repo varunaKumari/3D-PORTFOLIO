@@ -26,6 +26,20 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Keep Turbopack scoped to this app. A package-lock.json in the parent
+  // directory can otherwise make Next infer the wrong workspace root.
+  turbopack: {
+    root: process.cwd(),
+  },
+
+  // Keep Next's build workers within the memory and process limits common on
+  // Windows development machines.
+  experimental: {
+    cpus: 1,
+    staticGenerationMaxConcurrency: 1,
+    webpackMemoryOptimizations: true,
+  },
+
   // Emits a minimal server bundle at `.next/standalone/` so the Docker
   // runtime image can drop npm/node_modules entirely and just run
   // `node server.js`. Trims the final image to ~100 MB.

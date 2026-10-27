@@ -2,6 +2,7 @@
 
 import {
   createElement,
+  useCallback,
   useEffect,
   useRef,
   type CSSProperties,
@@ -39,6 +40,9 @@ export default function Reveal({
   once = true,
 }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
+  const setRef = useCallback((node: HTMLElement | null) => {
+    ref.current = node;
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -80,13 +84,14 @@ export default function Reveal({
     ["--reveal-from" as string]: axis[direction],
   };
 
-  return createElement(
+  // `Tag` is polymorphic and defaults to a DOM element. The callback ref is
+  // needed by IntersectionObserver; React's ref lint cannot infer the default.
+  /* eslint-disable react-hooks/refs */
+  const element = createElement(
     Tag,
-    {
-      ref,
-      className: `reveal ${className}`.trim(),
-      style,
-    },
+    { ref: setRef, className: `reveal ${className}`.trim(), style },
     children
   );
+  /* eslint-enable react-hooks/refs */
+  return element;
 }

@@ -426,17 +426,21 @@ function Keycap({
   const matRef = useRef<THREE.MeshPhysicalMaterial>(null);
   const baseEmissive = 0.3;
 
-  // Each key gets its own random frequency + phase, stable across re-renders
-  // so every keycap's random bob feels independent (no synchronised wave).
-  // Sampled once at mount.
-  const randomBob = useMemo(
-    () => ({
-      freq: 0.6 + Math.random() * 0.6, // 0.6..1.2 Hz-ish
-      phase: Math.random() * Math.PI * 2,
-      threshold: 0.45 + Math.random() * 0.2, // 0.45..0.65 — higher = rarer pop
-    }),
-    []
+  // Derive stable per-key variation from the slug. This keeps the idle bob
+  // independent between keys while remaining deterministic during render.
+  const bobSeed = [...icon.slug].reduce(
+    (seed, char) => (Math.imul(seed ^ char.charCodeAt(0), 16777619) >>> 0),
+    2166136261
   );
+  const bobUnit = (salt: number) => {
+    const value = (Math.imul(bobSeed ^ salt, 2246822519) >>> 0) / 4294967296;
+    return value;
+  };
+  const randomBob = {
+    freq: 0.6 + bobUnit(1) * 0.6, // 0.6..1.2 Hz-ish
+    phase: bobUnit(2) * Math.PI * 2,
+    threshold: 0.45 + bobUnit(3) * 0.2, // 0.45..0.65 — higher = rarer pop
+  };
 
   const iconTexture = useMemo(
     () => makeIconTexture(icon.path, `#${icon.hex}`),

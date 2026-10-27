@@ -127,8 +127,8 @@
   --color-ice-500: var(--ice-500);
   --color-ice-600: var(--ice-600);
   --color-ice-700: var(--ice-700);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: Consolas, "Courier New", monospace;
 }
 
 body {
