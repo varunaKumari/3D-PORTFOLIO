@@ -94,7 +94,7 @@ export const DICT = {
       en: "If what you've seen interests you, the keyboard is ready for the first message.",
     },
     copyEmail: { es: "Copiar email", en: "Copy email" },
-    openMail: { es: "Abrir mail", en: "Open mailto" },
+    openMail: { es: "Abrir correo", en: "Open email" },
     github: { es: "GitHub", en: "GitHub" },
     linkedin: { es: "LinkedIn", en: "LinkedIn" },
     emailToast: { es: "Email copiado", en: "Email copied" },

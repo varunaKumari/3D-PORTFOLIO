@@ -16,6 +16,7 @@ import { SKILLS_FLAT } from "@/lib/skills";
 import type { Lang } from "@/lib/i18n";
 
 const EMAIL = "varunakumari2102@gmail.com";
+const EMAIL_COMPOSE_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(EMAIL)}`;
 
 type Project = ProjectDetail & {
   align: "left" | "right";
@@ -26,33 +27,33 @@ const projects: Project[] = [
   {
     num: "01",
     name: {
-      es: "CodeReview.ai",
-      en: "CodeReview.ai",
+      es: "Adhikar",
+      en: "Adhikar",
     },
     stack: [
-      "Next.js",
+      "React",
+      "Vite",
       "TypeScript",
-      "Node.js",
+      "Express",
       "PostgreSQL",
       "Redis",
+      "pgvector",
       "BullMQ",
-      "Claude API",
     ],
     desc: {
-      es: "Plataforma de revisión de código automatizada impulsada por IA con agentes de múltiples roles.",
-      en: "AI-powered automated code review platform featuring multi-agent reviewers.",
+      es: "Asistente legal con IA para ayudar a comprender y explorar documentos jurídicos. Actualmente en desarrollo.",
+      en: "An AI-powered legal assistant for understanding and exploring legal documents. Currently in development.",
     },
     details: {
-      es: "Una plataforma premium de revisión de código impulsada por IA que analiza la calidad del código, las vulnerabilidades de seguridad y los cuellos de botella de rendimiento utilizando revisores de IA multi-persona. Diseñó canalizaciones de revisión asíncronas escalables utilizando Redis y BullMQ para un procesamiento eficiente de tareas en segundo plano.",
-      en: "An AI-powered peer code review platform capable of analyzing code quality, security vulnerabilities, scalability issues, and performance bottlenecks using multi-persona AI reviewers. Designed scalable asynchronous review pipelines using Redis and BullMQ for concurrent background job processing and real-time feedback.",
+      es: "Estoy trabajando actualmente en Adhikar, un asistente legal SaaS con IA que ayuda a las personas a comprender y navegar documentos jurídicos. Estoy desarrollando la experiencia y las funciones principales con una arquitectura full-stack basada en React, TypeScript, Express y PostgreSQL.",
+      en: "I’m currently building Adhikar, an AI-powered legal assistant SaaS that helps people understand and navigate legal documents. I’m developing its core experience and features with a full-stack architecture using React, TypeScript, Express, and PostgreSQL.",
     },
-    github: "https://github.com/varunaKumari/CodeReview.ai",
-    media: [
-      "/projects/revio/landing.png",
-      "/projects/revio/dashboard.png",
-      "/projects/revio/alertas.png",
-    ],
-    highlights: ["nextdotjs", "typescript", "nodedotjs", "postgresql"],
+    github: "https://github.com/varunaKumari/Adhikar",
+    badge: {
+      es: "En desarrollo",
+      en: "In progress",
+    },
+    highlights: ["react", "typescript", "nodedotjs", "postgresql"],
     align: "left",
     section: "project1",
   },
@@ -279,20 +280,6 @@ export default function Home() {
                 className="mt-10 flex flex-wrap items-center gap-3 pointer-events-auto fade-in-up"
                 style={{ ["--d" as string]: "700ms" }}
               >
-                <a
-                  href={lang === "en" ? "/cv_en.pdf" : "/cv.pdf"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cursor="hover"
-                  data-magnetic
-                  className="frost-btn frost-btn--primary"
-                >
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-                    <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z" />
-                    <path d="M14 3v5h5" />
-                  </svg>
-                  {t("hero.cv")}
-                </a>
                 <button
                   type="button"
                   data-cursor="hover"
@@ -771,7 +758,9 @@ export default function Home() {
                     {t("contact.copyEmail")}
                   </CopyEmail>
                   <a
-                    href={`mailto:${EMAIL}`}
+                    href={EMAIL_COMPOSE_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     data-cursor="hover"
                     className="frost-btn"
                   >
