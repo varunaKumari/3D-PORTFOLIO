@@ -33,6 +33,7 @@ export default function FrozenBackground() {
     if (!ctx) return;
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let w = window.innerWidth;
     let h = window.innerHeight;
 
@@ -51,7 +52,7 @@ export default function FrozenBackground() {
 
     const seed = () => {
       // Density tuned to viewport area, capped on either end.
-      const target = Math.min(140, Math.max(50, Math.floor((w * h) / 18000)));
+      const target = Math.min(100, Math.max(30, Math.floor((w * h) / 26000)));
       flakes = Array.from({ length: target }, () => makeFlake(true));
     };
 
@@ -98,7 +99,7 @@ export default function FrozenBackground() {
 
     const onVisibility = () => {
       running = !document.hidden;
-      if (running) {
+      if (running && !prefersReducedMotion) {
         last = performance.now();
         raf = requestAnimationFrame(draw);
       } else {
@@ -145,9 +146,10 @@ export default function FrozenBackground() {
         }
       }
 
-      if (running) raf = requestAnimationFrame(draw);
+      if (running && !prefersReducedMotion) raf = requestAnimationFrame(draw);
     };
-    raf = requestAnimationFrame(draw);
+    if (!prefersReducedMotion) raf = requestAnimationFrame(draw);
+    else draw(performance.now());
 
     return () => {
       cancelAnimationFrame(raf);

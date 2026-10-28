@@ -31,6 +31,7 @@ export default function CustomCursor() {
         visible = true;
         halo.style.opacity = "1";
       }
+      if (!raf) raf = requestAnimationFrame(tick);
     };
 
     const onOver = (e: MouseEvent) => {
@@ -54,13 +55,16 @@ export default function CustomCursor() {
       hx += (mx - hx) * 0.18;
       hy += (my - hy) * 0.18;
       halo.style.transform = `translate3d(${hx}px, ${hy}px, 0) translate(-50%, -50%)`;
-      raf = requestAnimationFrame(tick);
+      if (Math.abs(mx - hx) + Math.abs(my - hy) > 0.5) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        raf = 0;
+      }
     };
 
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseover", onOver);
     document.addEventListener("mouseleave", onLeave);
-    raf = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(raf);

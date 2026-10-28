@@ -80,6 +80,7 @@ export const DICT = {
   projects: {
     kicker: { es: "proyecto", en: "project" },
     viewMore: { es: "Ver más", en: "View more" },
+    moreOnGithub: { es: "Ver más proyectos en GitHub", en: "See more projects on GitHub" },
     openSite: { es: "Abrir sitio", en: "Visit site" },
     viewCode: { es: "Ver código", en: "View code" },
     close: { es: "Cerrar", en: "Close" },

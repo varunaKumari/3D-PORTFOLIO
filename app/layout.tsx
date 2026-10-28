@@ -11,7 +11,10 @@ import LanguageProvider, {
   LANG_BOOT_SCRIPT,
 } from "@/components/LanguageProvider";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://varunakumari.github.io/3D-PORTFOLIO";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Varuna Kumari — AI & Data Science Student & Full Stack Developer",
   description:
     "Immersive portfolio of Varuna Kumari - AI & Data Science Student and Full Stack Developer. 3D web experiences with Next.js and React Three Fiber.",
@@ -22,6 +25,8 @@ export const metadata: Metadata = {
       "Immersive portfolio with an interactive 3D scene. Next.js, React Three Fiber, GLSL.",
     type: "website",
     locale: "en_US",
+    siteName: "Varuna Kumari Portfolio",
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
@@ -29,6 +34,7 @@ export const metadata: Metadata = {
     description:
       "Immersive portfolio with an interactive 3D scene. Next.js, React Three Fiber, GLSL.",
   },
+  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
@@ -52,6 +58,16 @@ export default function RootLayout({
             English language before React mounts. */}
         <script dangerouslySetInnerHTML={{ __html: SEASON_BOOT_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: LANG_BOOT_SCRIPT }} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("portfolio-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark";}catch(e){document.documentElement.dataset.theme="dark";}})();`,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("portfolio-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark";}catch(e){document.documentElement.dataset.theme="dark";}})();`,
+          }}
+        />
       </head>
       <body
         className="min-h-full flex flex-col"

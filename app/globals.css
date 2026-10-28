@@ -714,3 +714,69 @@ body {
   opacity: 1;
   transform: translate(-50%, 0);
 }
+
+/* Accessible focus and contact fields. */
+:focus-visible {
+  outline: 3px solid var(--ice-300);
+  outline-offset: 4px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 200;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--ice-50);
+  color: var(--background);
+  transform: translateY(-160%);
+}
+.skip-link:focus { transform: translateY(0); }
+/* Persistent light theme; season changes still select the accent palette. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f4f7fb;
+  --foreground: #17263b;
+  --ink-0: #e9eff7;
+  --ink-1: #f0f4f9;
+  --ink-2: #dce5ef;
+  --ink-3: #c4d1df;
+  --ice-50: #14243a;
+  --ice-100: #203650;
+  --ice-200: #304b67;
+  --ice-300: #3e5d7d;
+  --ice-400: #365f89;
+  --ice-500: #4d85b6;
+  --ice-600: #2f6293;
+  --ice-700: #c5d3e2;
+  --aurora-1: rgba(85, 133, 181, 0.2);
+  --aurora-2: rgba(136, 172, 204, 0.2);
+  --aurora-3: rgba(88, 135, 181, 0.14);
+  --aurora-4: rgba(111, 151, 190, 0.15);
+  --bg-top: rgba(157, 189, 220, 0.35);
+  --bg-grad-from: #edf3fa;
+  --bg-grad-mid: #f4f7fb;
+  --bg-grad-to: #e7eef6;
+  --vignette: rgba(169, 190, 211, 0.25);
+}
+:root[data-theme="light"] .frost-btn,
+:root[data-theme="light"] .frost-icon {
+  color: var(--ice-100);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(48, 75, 103, 0.25);
+}
+:root[data-theme="light"] .project-modal__dialog {
+  background: linear-gradient(180deg, #ffffff, #edf3f9);
+  border-color: rgba(48, 75, 103, 0.25);
+}
+:root[data-theme="light"] .project-modal__close,
+:root[data-theme="light"] .carousel__nav {
+  color: var(--ice-100);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+@media (max-width: 640px) {
+  .project-modal { padding: 0.65rem; }
+  .project-modal__dialog { max-height: 94dvh; }
+  .project-modal__body { padding: 1.25rem 1rem 1.5rem; }
+}

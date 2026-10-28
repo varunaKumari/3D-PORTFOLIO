@@ -43,6 +43,7 @@ function pick<T>(loc: { es: T; en: T }, lang: Lang): T {
 export default function ProjectModal({ project, onClose }: Props) {
   const { t, lang } = useLanguage();
   const dialogRef = useRef<HTMLDivElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
   const open = project !== null;
   const lenis = useLenis();
 
@@ -77,14 +78,47 @@ export default function ProjectModal({ project, onClose }: Props) {
   // users don't have to tab through the whole page first.
   useEffect(() => {
     if (open && dialogRef.current) {
+      openerRef.current = document.activeElement as HTMLElement | null;
       dialogRef.current.focus();
     }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const onTab = (event: KeyboardEvent) => {
+      if (event.key !== "Tab" || !dialogRef.current) return;
+      const items = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not(:disabled), input:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((item) => item.offsetParent !== null);
+      if (items.length === 0) {
+        event.preventDefault();
+        dialogRef.current.focus();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onTab);
+    return () => {
+      window.removeEventListener("keydown", onTab);
+      openerRef.current?.focus();
+    };
   }, [open]);
 
   return (
     <div
       className={`project-modal ${open ? "project-modal--open" : ""}`}
       aria-hidden={!open}
+      inert={!open}
       onClick={(e) => {
         // Click on the backdrop (not inside the dialog) closes.
         if (e.target === e.currentTarget) onClose();

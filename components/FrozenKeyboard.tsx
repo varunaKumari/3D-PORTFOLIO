@@ -8,17 +8,32 @@ import {
   Text3D,
 } from "@react-three/drei";
 import {
+  memo,
   Suspense,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
 } from "react";
 import { useSeason } from "@/components/SeasonProvider";
 import { useLanguage } from "@/components/LanguageProvider";
 import * as THREE from "three";
 import { SKILLS_GRID, type SkillIcon } from "@/lib/skills";
+
+const MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+function subscribeMotion(callback: () => void) {
+  const media = window.matchMedia(MOTION_QUERY);
+  media.addEventListener("change", callback);
+  return () => media.removeEventListener("change", callback);
+}
+function getReducedMotion() {
+  return window.matchMedia(MOTION_QUERY).matches;
+}
+function getReducedMotionServerSnapshot() {
+  return false;
+}
 
 // Per-section keyboard "states" — same idea as Naresh's animated-background-
 // config.ts, but for our R3F keyboard. Values are tweened toward via lerp
@@ -252,7 +267,7 @@ function createExtrudedBox(
 function makeIconTexture(
   svgPath: string,
   color: string,
-  size = 256
+  size = 128
 ): THREE.CanvasTexture {
   const canvas = document.createElement("canvas");
   canvas.width = size;
@@ -272,7 +287,7 @@ function makeIconTexture(
 
   const tex = new THREE.CanvasTexture(canvas);
   tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
+  tex.anisotropy = 2;
   tex.needsUpdate = true;
   return tex;
 }
@@ -388,11 +403,12 @@ function playKeyClick(seed = 0) {
   }
 }
 
-function Keycap({
+const Keycap = memo(function Keycap({
   geometry,
   position,
   isMobile,
   icon,
+  keyId,
   onHoverChange,
   hovered,
   highlightsRef,
@@ -404,7 +420,8 @@ function Keycap({
   position: [number, number, number];
   isMobile: boolean;
   icon: SkillIcon;
-  onHoverChange: (hovered: boolean) => void;
+  keyId: string;
+  onHoverChange: (id: string, hovered: boolean) => void;
   hovered: boolean;
   // Reactive set of slugs to animate; read every frame so we don't force
   // re-renders when the active project changes.
@@ -529,22 +546,22 @@ function Keycap({
   const handleOver = useCallback(
     (e: { stopPropagation: () => void }) => {
       e.stopPropagation();
-      onHoverChange(true);
+      onHoverChange(keyId, true);
     },
-    [onHoverChange]
+    [keyId, onHoverChange]
   );
-  const handleOut = useCallback(() => onHoverChange(false), [onHoverChange]);
+  const handleOut = useCallback(() => onHoverChange(keyId, false), [keyId, onHoverChange]);
 
   // Touch devices never fire hover, so on mobile we drive the same press +
   // SFX path from pointer down/up — a momentary tap-to-bounce.
   const handleDown = useCallback(
     (e: { stopPropagation: () => void }) => {
       e.stopPropagation();
-      onHoverChange(true);
+      onHoverChange(keyId, true);
     },
-    [onHoverChange]
+    [keyId, onHoverChange]
   );
-  const handleUp = useCallback(() => onHoverChange(false), [onHoverChange]);
+  const handleUp = useCallback(() => onHoverChange(keyId, false), [keyId, onHoverChange]);
 
   const iconY = KEYCAP_HEIGHT / 2 + 0.0015;
 
@@ -587,7 +604,7 @@ function Keycap({
       </group>
     </group>
   );
-}
+});
 
 function Keyboard({ mobile }: { mobile: boolean }) {
   const ref = useRef<THREE.Group>(null);
@@ -596,6 +613,11 @@ function Keyboard({ mobile }: { mobile: boolean }) {
   const { t } = useLanguage();
   const [activeSection, activeSectionRef, highlightsRef] = useActiveSection();
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const handleKeyHover = useCallback((id: string, hovered: boolean) => {
+    setHoveredKey((currentKey) =>
+      hovered ? id : currentKey === id ? null : currentKey
+    );
+  }, []);
   // Mutable holders for the smoothed target — kept off React state so
   // useFrame can read them every tick without triggering re-renders.
   const current = useRef<KeyboardState>({ ...SECTION_STATES.hero });
@@ -713,12 +735,18 @@ function Keyboard({ mobile }: { mobile: boolean }) {
     return SKILLS[r]?.[c] ?? null;
   }, [hoveredKey]);
 
-  const keycapY = BASE_HEIGHT / 2 + KEYCAP_HEIGHT / 2 + 0.005;
+  const keycapPositions = useMemo(
+    () =>
+      Array.from({ length: ROWS * COLS }, (_, index) => [
+        ((index % COLS) - (COLS - 1) / 2) * COL_SPACING,
+        BASE_HEIGHT / 2 + KEYCAP_HEIGHT / 2 + 0.005,
+        (Math.floor(index / COLS) - (ROWS - 1) / 2) * ROW_SPACING,
+      ] as [number, number, number]),
+    []
+  );
   const keycaps = [];
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
-      const x = (col - (COLS - 1) / 2) * COL_SPACING;
-      const z = (row - (ROWS - 1) / 2) * ROW_SPACING;
       const id = `${row}-${col}`;
       const icon = SKILLS[row][col];
       // Phase staggered by grid position so highlighted keys look like a
@@ -730,17 +758,16 @@ function Keyboard({ mobile }: { mobile: boolean }) {
         <Keycap
           key={id}
           geometry={keycapGeom}
-          position={[x, keycapY, z]}
+          position={keycapPositions[row * COLS + col]}
           isMobile={isMobile}
           icon={icon}
+          keyId={id}
           hovered={hoveredKey === id}
           highlightsRef={highlightsRef}
           activeSectionRef={activeSectionRef}
           wavePhase={wavePhase}
           accent={palette.accent}
-          onHoverChange={(h) =>
-            setHoveredKey((prev) => (h ? id : prev === id ? null : prev))
-          }
+          onHoverChange={handleKeyHover}
         />
       );
     }
@@ -819,6 +846,11 @@ export default function FrozenKeyboard({
 }: {
   mobile?: boolean;
 }) {
+  const reducedMotion = useSyncExternalStore(
+    subscribeMotion,
+    getReducedMotion,
+    getReducedMotionServerSnapshot
+  );
   return (
     <Canvas
       // Portrait gets a pulled-back, centered, less top-down camera so the
@@ -829,11 +861,12 @@ export default function FrozenKeyboard({
           ? { position: [0, 2.0, 9.0], fov: 26 }
           : { position: [1.5, 3.6, 11], fov: 22 }
       }
-      dpr={mobile ? [1, 1.5] : [1, 2]}
+      dpr={mobile ? 1 : [1, 1.5]}
+      frameloop={reducedMotion ? "demand" : "always"}
       gl={{
-        antialias: true,
+        antialias: !mobile,
         alpha: true,
-        powerPreference: "high-performance",
+        powerPreference: mobile ? "low-power" : "high-performance",
       }}
     >
       {/* Canvas is transparent so the FrozenBackground (snow + aurora) shows

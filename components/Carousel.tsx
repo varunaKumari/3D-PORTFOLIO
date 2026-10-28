@@ -25,7 +25,7 @@ export default function Carousel({ media, projectNum, altPrefix = "Screenshot" }
 
   // Auto-advance every 5s unless the user is interacting.
   useEffect(() => {
-    if (paused || slides.length <= 1) return;
+    if (paused || slides.length <= 1 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(() => {
       setIdx((i) => (i + 1) % slides.length);
     }, 5000);
@@ -39,8 +39,14 @@ export default function Carousel({ media, projectNum, altPrefix = "Screenshot" }
   return (
     <div
       className="carousel"
+      role="region"
+      aria-label={`Project ${projectNum} screenshots`}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      onFocus={() => setPaused(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPaused(false);
+      }}
     >
       <div
         className="carousel__track"
@@ -86,7 +92,7 @@ export default function Carousel({ media, projectNum, altPrefix = "Screenshot" }
             className="carousel__nav carousel__nav--prev"
             onClick={() => go(-1)}
             data-cursor="hover"
-            aria-label="Prev"
+            aria-label="Previous slide"
           >
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
               <path d="M15 6l-6 6 6 6" />
@@ -97,7 +103,7 @@ export default function Carousel({ media, projectNum, altPrefix = "Screenshot" }
             className="carousel__nav carousel__nav--next"
             onClick={() => go(1)}
             data-cursor="hover"
-            aria-label="Next"
+            aria-label="Next slide"
           >
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
               <path d="M9 6l6 6-6 6" />

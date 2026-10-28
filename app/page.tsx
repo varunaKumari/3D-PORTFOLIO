@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import FrozenKeyboard from "@/components/FrozenKeyboard";
+import LazyKeyboard from "@/components/LazyKeyboard";
 import SmoothScroll from "@/components/smooth-scroll";
 import Reveal from "@/components/Reveal";
 import SectionNav from "@/components/SectionNav";
 import CopyEmail from "@/components/CopyEmail";
 import SeasonPicker from "@/components/SeasonPicker";
+import ThemeToggle from "@/components/ThemeToggle";
 import ProjectModal, {
   type ProjectDetail,
 } from "@/components/ProjectModal";
@@ -42,7 +43,7 @@ const projects: Project[] = [
     ],
     desc: {
       es: "Asistente legal con IA para ayudar a comprender y explorar documentos jurídicos. Actualmente en desarrollo.",
-      en: "An AI-powered legal assistant for understanding and exploring legal documents. Currently in development.",
+      en: "Building an AI legal assistant that helps people understand and navigate complex legal documents.",
     },
     details: {
       es: "Estoy trabajando actualmente en Adhikar, un asistente legal SaaS con IA que ayuda a las personas a comprender y navegar documentos jurídicos. Estoy desarrollando la experiencia y las funciones principales con una arquitectura full-stack basada en React, TypeScript, Express y PostgreSQL.",
@@ -72,11 +73,11 @@ const projects: Project[] = [
     ],
     desc: {
       es: "Plataforma SaaS de inteligencia de gastos en IA para analizar suscripciones, uso de APIs y costos operativos.",
-      en: "SaaS AI spend intelligence platform to analyze AI subscriptions, API usage, and operational costs.",
+      en: "Tracks AI subscriptions, API usage, and operating costs to help teams spot overspending and prioritize savings.",
     },
     details: {
       es: "Plataforma integral de análisis de gastos de IA para rastrear el uso de APIs y los costos de suscripción, ayudando a identificar oportunidades de optimización. Integra paneles de previsión financiera e insights generados por IA para recomendaciones de ahorro de costos automatizadas.",
-      en: "A full-stack AI spend intelligence platform to analyze AI subscriptions, API usage, and operational costs, helping users identify overspending and optimization opportunities. Integrated AI-generated financial insights, forecasting dashboards, and benchmarking systems to deliver personalized cost-saving recommendations.",
+      en: "Combines AI subscription and API cost tracking with forecasting dashboards and AI-generated financial insights, helping users identify overspending and act on personalized cost-saving recommendations.",
     },
     github: "https://github.com/varunaKumari/PromptBudget",
     media: [
@@ -91,30 +92,26 @@ const projects: Project[] = [
   {
     num: "03",
     name: {
-      es: "Pizarra Colaborativa",
-      en: "Collaborative Whiteboard",
+      es: "AI Interview",
+      en: "AI Interview",
     },
     stack: [
-      "React.js",
-      "WebSockets",
-      "HTML5 Canvas",
-      "Node.js",
+      "Next.js",
+      "TypeScript",
       "Express",
+      "MongoDB",
+      "OpenAI API",
+      "WebRTC",
     ],
     desc: {
-      es: "Lienzo interactivo en tiempo real para colaboración remota con sincronización de estado instantánea.",
-      en: "Real-time interactive canvas for remote collaboration with instant state synchronization.",
+      es: "Plataforma inteligente de entrevistas simuladas con entrevistas técnicas y conductuales por rol.",
+      en: "An intelligent mock interview platform with role-based technical and behavioral interviews.",
     },
     details: {
-      es: "Una pizarra digital interactiva que permite a múltiples usuarios dibujar, escribir y colaborar en tiempo real. Construida con Canvas API para un renderizado de alto rendimiento y WebSockets (Socket.io) para una sincronización de estado de latencia ultra baja.",
-      en: "A collaborative digital whiteboard allowing multiple users to draw, write, and collaborate in real time. Built using the HTML5 Canvas API for high-performance rendering and WebSockets (Socket.io) for ultra-low latency state synchronization.",
+      es: "Plataforma de entrevistas simuladas impulsada por IA con entrevistas técnicas y conductuales según el rol. Incluye autenticación, conversión de voz a texto, evaluación de respuestas con IA y APIs REST escalables. Los paneles de rendimiento muestran el historial de entrevistas y comentarios personalizados de IA.",
+      en: "An AI-powered mock interview platform with role-based technical and behavioral interviews. Implemented authentication, speech-to-text, AI answer evaluation, and scalable REST APIs. Performance dashboards include interview history and personalized AI feedback.",
     },
-    github: "https://github.com/varunaKumari/WhiteBoard-web",
-    media: [
-      "/projects/gestor-gastos/dashboard.png",
-      "/projects/gestor-gastos/wallets.png",
-    ],
-    highlights: ["react", "javascript", "html5", "nodedotjs"],
+    highlights: ["nextdotjs", "typescript", "mongodb", "nodedotjs"],
     align: "left",
     section: "project3",
   },
@@ -133,11 +130,11 @@ const projects: Project[] = [
     ],
     desc: {
       es: "Red social inteligente con feeds personalizados por IA, moderación automática de contenido y chat inteligente.",
-      en: "Intelligent social network featuring AI-powered personalized feeds, auto-moderation, and chat assistants.",
+      en: "Builds personalized feeds, automated content moderation, and assistant chat into one AI-enabled social platform.",
     },
     details: {
       es: "Una red social moderna con generación de feeds inteligentes y moderación automática de contenido impulsada por modelos de lenguaje de OpenAI. Incluye chat en vivo con asistentes virtuales y un panel de análisis de interacciones.",
-      en: "A modern social network with intelligent feed generation and automated content moderation powered by OpenAI language models. Features real-time chat with virtual assistants and an interaction analytics dashboard.",
+      en: "Uses OpenAI models to personalize feed generation and automate content moderation, alongside real-time assistant chat and an interaction analytics dashboard.",
     },
     github: "https://github.com/varunaKumari/ai-social-platform",
     media: [
@@ -200,7 +197,7 @@ export default function Home() {
             away and the rest of the page is clean, fast 2D. */}
         {!isMobile && (
           <div className="fixed inset-0 z-0">
-            <FrozenKeyboard />
+            <LazyKeyboard />
           </div>
         )}
 
@@ -222,6 +219,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-2 pointer-events-auto">
             <SeasonPicker />
+            <ThemeToggle />
             <span className="hidden md:inline-flex">
             <a
               href="https://github.com/varunaKumari/3D-PORTFOLIO"
@@ -241,7 +239,8 @@ export default function Home() {
 
         <SectionNav />
 
-        <main className="relative z-10 pointer-events-none">
+        <a className="skip-link" href="#main-content">Skip to content</a>
+        <main id="main-content" className="relative z-10 pointer-events-none">
           {/* Hero */}
           <section
             data-kb-section="hero"
@@ -251,7 +250,7 @@ export default function Home() {
                 with it) and takes pointer events so keycaps are tappable. */}
             {isMobile && (
               <div className="w-full h-[34vh] mt-12 -mb-4 pointer-events-auto">
-                <FrozenKeyboard mobile />
+                <LazyKeyboard mobile />
               </div>
             )}
             <div className="mt-2 md:mt-20">
@@ -295,6 +294,15 @@ export default function Home() {
                 >
                   {t("hero.hire")}
                 </button>
+                <a
+                  href="/Varuna-Kumari.pdf"
+                  download
+                  data-cursor="hover"
+                  data-magnetic
+                  className="frost-btn frost-btn--primary"
+                >
+                  {t("hero.cv")}
+                </a>
                 {/* Mobile-only full-width break: forces the social icons onto
                     their own row below the two primary buttons. Hidden on md+
                     so desktop keeps everything on a single line. */}
@@ -641,12 +649,12 @@ export default function Home() {
               <div
                 className={
                   p.align === "left"
-                    ? "max-w-xl relative"
+                    ? "max-w-xl relative rounded-3xl border border-ice-400/15 bg-ink-0/25 p-6 sm:p-8 backdrop-blur-sm"
                     : // Right-aligned cards get extra right padding on md+ so
                       // the action buttons ("Ver más") don't sit under the
                       // fixed SectionNav dots on the right edge. On mobile they
                       // collapse to a normal left-aligned full-width card.
-                      "max-w-xl relative md:ml-auto md:text-right md:mr-16 lg:mr-24"
+                      "max-w-xl relative rounded-3xl border border-ice-400/15 bg-ink-0/25 p-6 sm:p-8 backdrop-blur-sm md:ml-auto md:text-right md:mr-16 lg:mr-24"
                 }
               >
                 <Reveal>
@@ -725,11 +733,27 @@ export default function Home() {
             </section>
           ))}
 
+          <section className="relative py-12 px-6 sm:px-10 md:px-14 flex justify-center">
+            <a
+              href="https://github.com/varunaKumari"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="hover"
+              data-magnetic
+              className="frost-btn frost-btn--primary pointer-events-auto"
+            >
+              {t("projects.moreOnGithub")}
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+                <path d="M7 17L17 7M8 7h9v9" />
+              </svg>
+            </a>
+          </section>
+
           {/* Contact — copy pinned to the left so the (large, hero-posed)
               keyboard on the right has room to bob its random keys. */}
           <section
             data-kb-section="contact"
-            className="relative py-24 md:min-h-screen flex flex-col justify-center p-6 sm:p-10 md:p-14 overflow-hidden"
+            className="relative scroll-mt-24 pt-36 pb-24 md:min-h-screen flex flex-col justify-center px-6 sm:px-10 md:px-14 overflow-hidden"
           >
             <div className="max-w-xl relative">
               <Reveal>

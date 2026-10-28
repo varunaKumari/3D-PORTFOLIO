@@ -44,12 +44,12 @@ SaaS AI spend intelligence platform for analyzing AI subscriptions, API usage, a
 - **Stack:** Next.js, TypeScript, Supabase, Tailwind CSS, Claude API
 - **Source:** [github.com/varunaKumari/PromptBudget](https://github.com/varunaKumari/PromptBudget)
 
-### Collaborative Whiteboard
+### AI Interview
 
-Real-time interactive canvas for remote collaboration with instant state synchronization.
+AI-powered mock interview platform with role-based technical and behavioral interviews.
 
-- **Stack:** React.js, WebSockets, HTML5 Canvas, Node.js, Express
-- **Source:** [github.com/varunaKumari/WhiteBoard-web](https://github.com/varunaKumari/WhiteBoard-web)
+- **Stack:** Next.js, TypeScript, Express.js, MongoDB, OpenAI API, WebRTC
+- **Features:** Authentication, speech-to-text, AI answer evaluation, scalable REST APIs, and performance dashboards with interview history and personalized AI feedback.
 
 ### AI Social Platform
 
@@ -188,15 +188,26 @@ docker run -p 3000:3000 varuna-3d-portfolio
 
 - Uses Next.js standalone output for smaller production deployments.
 - Project screenshots rely on native lazy loading.
-- Fonts are optimized with `next/font`.
+- Fonts use a system stack to avoid a blocking font download.
+- Three.js is dynamically imported after the browser's first idle period.
+- Mobile caps rendering at device pixel ratio 1 and disables antialiasing.
+- 3D icon textures use 128px canvases; the ambient particle count is capped.
+- The custom pointer glow only animates while catching up to pointer movement.
 - Mobile renders a lighter 3D experience to reduce WebGL overhead.
 - Smooth scrolling and reveal animations are isolated into reusable components.
+- Set `NEXT_PUBLIC_SITE_URL` in `.env.local` so canonical and sitemap URLs match production.
 
 ## Contact
 
 - **Email:** [varunakumari2102@gmail.com](mailto:varunakumari2102@gmail.com)
 - **GitHub:** [github.com/varunaKumari](https://github.com/varunaKumari)
 - **LinkedIn:** [linkedin.com/in/varunakumari](https://www.linkedin.com/in/varunakumari/)
+
+### Site metadata
+
+Set `NEXT_PUBLIC_SITE_URL` in `.env.local` to the deployed origin so canonical and sitemap URLs match the production domain.
+
+The portfolio includes a downloadable PDF resume at `public/Varuna-Kumari.pdf`, generated Open Graph artwork, and `sitemap.xml` and `robots.txt` routes. Update the resume PDF when publishing a new version.
 
 ## License
 
