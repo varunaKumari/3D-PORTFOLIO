@@ -521,7 +521,7 @@ export default function Home() {
                       Amazon FFE Scholar
                     </h4>
                     <span className="font-mono text-xs text-ice-100 px-3 py-1 rounded-full border border-ice-700/70 bg-ink-2/60">
-                      2025 — {lang === "en" ? "Present" : "Presente"}
+                      Jun 2025 — Feb 2026
                     </span>
                   </div>
                   <ul className="space-y-3">
@@ -586,7 +586,7 @@ export default function Home() {
                       Member, CodeSoc — IIIT Raichur
                     </h4>
                     <span className="font-mono text-xs text-ice-100 px-3 py-1 rounded-full border border-ice-700/70 bg-ink-2/60">
-                      2025 — {lang === "en" ? "Present" : "Presente"}
+                      2025
                     </span>
                   </div>
                   <ul className="space-y-3">
@@ -606,7 +606,7 @@ export default function Home() {
                       Member, SIC Technical Committee
                     </h4>
                     <span className="font-mono text-xs text-ice-100 px-3 py-1 rounded-full border border-ice-700/70 bg-ink-2/60">
-                      2025 — {lang === "en" ? "Present" : "Presente"}
+                      2025
                     </span>
                   </div>
                   <ul className="space-y-3">
